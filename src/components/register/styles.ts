@@ -23,14 +23,15 @@ const styles = StyleSheet.create({
   welcomeContainer1: {
     // marginVertical: 40,
     marginTop: 10,
-    flex: 1,
+    // flex: 1,
     position: 'absolute',
     width: '100%',
     // height: '60%',
     // backgroundColor: 'red',
   },
   emailpasscon: {
-    // height: '60%',
+    // height: '30%',
+    // flex: 0.5,
     // width: '90%',
     backgroundColor: 'white',
     // marginTop: 10,
@@ -57,24 +58,32 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   emailpassinput: {
-    // backgroundColor: 'orange',
-
-    margin: 8,
-    // flex: 1,
-
-    // backgroundColor: 'green',
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 15,
     borderRadius: 10,
+    padding: 0,
+    backgroundColor: 'orange',
   },
 
   logreg: {
     // flex: 0.3,
-    height: '15%',
+    // height: '27%',
     // backgroundColor: 'blue',
     flexDirection: 'row',
     marginHorizontal: 40,
+    justifyContent: 'space-between',
+    // marginBottom: 100,
     // padding: 20,
     marginTop: 20,
     // justifyContent: 'space-between', // not working
+  },
+
+  logregText: {
+    color: 'rgb(0, 0, 0)',
+    fontWeight: '900',
+    fontSize: 22,
+    fontFamily: fonts.Bold,
   },
 
   register: {

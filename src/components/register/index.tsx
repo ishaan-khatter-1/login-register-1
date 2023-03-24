@@ -12,8 +12,11 @@ import React, {useRef, useState} from 'react';
 import styles from './styles';
 import Btnlogreg from '../button';
 import Inputfield from '../textinput';
+import { useNavigation } from '@react-navigation/native';
+
 
 const Register = () => {
+  const {navigate} = useNavigation();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [fullName, setfullName] = useState('');
@@ -25,6 +28,10 @@ const Register = () => {
   const [closeye, setCloseye] = useState(
     'https://cdn4.iconfinder.com/data/icons/font-awesome-regular/576/eye-512.png',
   );
+
+  const backtologin =()=>{
+    navigate('Login')
+  }
 
   const name_ref = useRef();
   const phone_ref = useRef();
@@ -107,7 +114,6 @@ const Register = () => {
       fullnameRex.test(fullName) &&
       phoneRex.test(phone) &&
       passRex.test(password) &&
-      confirmPass === password &&
       zipRex.test(zip)
     ) {
       setOpacity(1);
@@ -137,120 +143,120 @@ const Register = () => {
         style={styles.img1}
       />
       <View style={styles.welcomeContainer1}>
-        <ScrollView>
-          <View style={styles.welcomeContainer}>
-            <Text style={styles.welcome}>🫅🏻New User</Text>
-            <Text style={styles.welcome}>Registeration</Text>
-          </View>
-          <ScrollView style={styles.emailpasscon}>
-            {/* <Inputfield text={'Enter Email'} />
-            <Inputfield text={'First Name'} />
-            <Inputfield text={'Last Name'} />
-            <Inputfield text={'Keep Password'} />
-            <Inputfield text={'Confirm Password'} /> */}
-            <View>
-              <View style={styles.emailpass}>
-                <TextInput
-                  style={styles.emailpassinput}
-                  placeholder={'Enter Email'}
-                  onChangeText={val => setEmail(val)}
-                  onSubmitEditing={() => name_ref.current.focus()}
-                  blurOnSubmit={false}
-                  returnKeyType={'next'}
-                />
-              </View>
-              <View style={styles.emailpass}>
-                <TextInput
-                  style={styles.emailpassinput}
-                  placeholder={'Enter Full Name'}
-                  onChangeText={val => setfullName(val)}
-                  onSubmitEditing={() => phone_ref.current.focus()}
-                  ref={name_ref}
-                  blurOnSubmit={false}
-                  returnKeyType={'next'}
-                />
-              </View>
-              <View style={styles.emailpass}>
-                <TextInput
-                  style={styles.emailpassinput}
-                  placeholder={'Enter Phone Number'}
-                  onChangeText={val => setPhone(val)}
-                  onSubmitEditing={() => keepPass_ref.current.focus()}
-                  ref={phone_ref}
-                  blurOnSubmit={false}
-                  returnKeyType={'next'}
-                />
-              </View>
-              <View
-                style={[
-                  styles.emailpass,
-                  {flexDirection: 'row', alignItems: 'center'},
-                ]}>
-                <TextInput
-                  style={[styles.emailpassinput, {flex: 1}]}
-                  placeholder={'Keep Password'}
-                  onChangeText={val => {
-                    setPassword(val);
-                    console.log(val);
-                  }}
-                  onSubmitEditing={() => confirmPass_ref.current.focus()}
-                  ref={keepPass_ref}
-                  blurOnSubmit={false}
-                  returnKeyType={'next'}
-                />
-                <TouchableOpacity onPress={eyefunc}>
-                  <Image
-                    style={{
-                      width: 20,
-                      height: 20,
-                      margin: 10,
-                    }}
-                    source={{uri: `${closeye}`}}
-                  />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.emailpass}>
-                <TextInput
-                  style={styles.emailpassinput}
-                  placeholder={'Confirm Password'}
-                  onChangeText={val => setconfirmPass(val)}
-                  onSubmitEditing={() => zip_ref.current.focus()}
-                  ref={confirmPass_ref}
-                  blurOnSubmit={false}
-                  returnKeyType={'next'}
-                />
-              </View>
-            </View>
+        {/* <ScrollView> */}
 
-            {/* <View style={{marginBottom: 20}}>
-              <Inputfield text={'Enter Zip Code'} />
-            </View> */}
-            <View
-              style={{
-                marginBottom: 20,
-              }}>
-              <View style={[styles.emailpass]}>
-                <TextInput
-                  style={styles.emailpassinput}
-                  placeholder={'Enter Zip code'}
-                  onChangeText={val => {
-                    setZip(val);
-                    console.log('value : ', val);
-                    console.log('zip : ', zip);
-                    opacitydone();
-                  }}
-                  ref={zip_ref}
-                />
-              </View>
+        <ScrollView>
+          <View style={{flex: 1}}>
+            <View style={styles.welcomeContainer}>
+              <Text style={styles.welcome}>🫅🏻New User</Text>
+              <Text style={styles.welcome}>Registeration</Text>
             </View>
-          </ScrollView>
-          <Btnlogreg
-            text={'Register'}
-            validate={validationFunction}
-            opacity={opacity}
-          />
-          <View style={styles.logreg}>{/* <Btnlogreg text={'new'} /> */}</View>
+            <View style={{height: '55%'}}>
+              {/* <ScrollView style={styles.emailpasscon}> */}
+              <ScrollView style={styles.emailpasscon}>
+                <View style={styles.emailpassinput}>
+                  <Inputfield
+                    text={'Enter Email'}
+                    onSubmitEditting={() => name_ref.current.focus()}
+                    blurOnSubmit={false}
+                    returnKeyType={'next'}
+                    setSomething={val => setEmail(val)}
+                  />
+                </View>
+                <View style={styles.emailpassinput}>
+                  <Inputfield
+                    text={'Full Name'}
+                    onSubmitEditting={() => phone_ref.current.focus()}
+                    blurOnSubmit={false}
+                    returnKeyType={'next'}
+                    setSomething={val => setfullName(val)}
+                    pass_ref={name_ref}
+                  />
+                </View>
+                <View style={styles.emailpassinput}>
+                  <Inputfield
+                    text={'Phone Number'}
+                    onSubmitEditting={() => keepPass_ref.current.focus()}
+                    blurOnSubmit={false}
+                    returnKeyType={'next'}
+                    setSomething={val => setPhone(val)}
+                    pass_ref={phone_ref}
+                  />
+                </View>
+                <View
+                  style={[
+                    styles.emailpassinput,
+                    {justifyContent: 'space-between'},
+                  ]}>
+                  <Inputfield
+                    text={'Keep Password'}
+                    onSubmitEditting={() => confirmPass_ref.current.focus()}
+                    blurOnSubmit={false}
+                    returnKeyType={'next'}
+                    setSomething={val => setPassword(val)}
+                    pass_ref={keepPass_ref}
+                    securetextentry={eye}
+                  />
+                  <TouchableOpacity onPress={eyefunc}>
+                    <Image
+                      style={{width: 20, height: 20, marginHorizontal: 12}}
+                      source={{uri: `${closeye}`}}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View
+                  style={[
+                    styles.emailpassinput,
+                    {
+                      justifyContent: 'space-between',
+                    },
+                  ]}>
+                  <Inputfield
+                    text={'Confirm Password'}
+                    onSubmitEditting={() => zip_ref.current.focus()}
+                    blurOnSubmit={false}
+                    returnKeyType={'next'}
+                    setSomething={val => setconfirmPass(val)}
+                    pass_ref={confirmPass_ref}
+                    securetextentry={eye}
+                  />
+                  <TouchableOpacity onPress={eyefunc}>
+                    <Image
+                      style={{width: 20, height: 20, marginHorizontal: 12}}
+                      source={{uri: `${closeye}`}}
+                    />
+                  </TouchableOpacity>
+                </View>
+                <View style={[styles.emailpassinput, {marginBottom: 20}]}>
+                  <Inputfield
+                    text={'Zip code'}
+                    // blurOnSubmit={false}
+                    returnKeyType={'done'}
+                    setSomething={val => setZip(val)}
+                    pass_ref={zip_ref}
+                    opacityPass={opacitydone}
+                    // onSubmitEditting={validationFunction}
+                  />
+                </View>
+              </ScrollView>
+              {/* </ScrollView> */}
+            </View>
+            <Btnlogreg
+              text={'Register'}
+              validate={validationFunction}
+              opacity={opacity}
+            />
+
+            <View style={styles.logreg}>
+              <Text style={styles.logregText}>Already Registered? --==></Text>
+              <TouchableOpacity onPress={backtologin}><Text style={styles.logregText}>Login</Text></TouchableOpacity>
+            </View>
+          </View>
         </ScrollView>
+        {/* <View style={styles.logreg}> */}
+        {/* <Text>Already Registered?</Text> */}
+        {/* </View> */}
+        {/* </ScrollView> */}
       </View>
     </View>
   );

@@ -102,7 +102,7 @@ const Login = () => {
           <Text style={styles.welcome}>🫅🏻Login</Text>
         </View>
         <View style={styles.emailpasscon}>
-          <View style={styles.emailpass}>
+          {/* <View style={styles.emailpass}>
             <TextInput style={styles.emailpassinput}
             placeholder = {'enter email'}
             onSubmitEditing={()=>pass_ref.current.focus()}
@@ -117,8 +117,8 @@ const Login = () => {
 
 
             </TextInput>
-          </View>
-          <View style={[styles.emailpass]}>
+          </View> */}
+          {/* <View style={[styles.emailpass]}>
             <View style={{flex:1, flexDirection:'row', alignItems:"center"}}>
             <TextInput style={[styles.emailpassinput,{flex:1}]}
             placeholder = {'enter password'} ref={pass_ref} returnKeyType={"done"} 
@@ -139,9 +139,24 @@ const Login = () => {
       />
       </TouchableOpacity>
       </View>
+          </View> */}
+          <View style={{ flexDirection:'row',alignItems: 'center',margin:15, borderRadius: 10, padding: 0,backgroundColor:'orange'}}>
+            {/* <View style={{flex:1,}}> */}
+          <Inputfield text={'Enter Email'} onSubmitEditting = {()=> pass_ref.current.focus()} blurOnSubmit={false} returnKeyType={'next'} setSomething = {val=>setEmail(val)}/>
+          {/* </View> */}
           </View>
-          {/* <Inputfield text={'Enter Email'} />
-          <Inputfield text={'Enter Password'} pass_refer_true={true}/> */}
+
+          <View style={{flex:1, flexDirection:'row',alignItems: 'center',backgroundColor:'orange',margin:15, borderRadius: 10, padding: 0,justifyContent:'space-between'}}>
+          <Inputfield text={'Enter Password'} pass_ref={pass_ref} returnKeyType={'done'} setSomething = {(val)=>setPassword(val)} opacityPass={opactiyPass} 
+securetextentry = {eye}
+          />
+          <TouchableOpacity onPress={eyefunc}>
+            <Image
+          style={{width: 20 , height: 20, marginHorizontal:12,}}
+          source={{uri:`${closeye}`}}
+      />
+      </TouchableOpacity></View>
+          
 
         </View>
         <View style={styles.forgotpass}>
